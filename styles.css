@@ -58,11 +58,19 @@ body{
     /* border: 1px solid white; */
 }
 
+.timer h2{
+    font-size: 30px;
+}
+
 .timer-region{
     display: flex;
     flex-direction: column;
     align-items: center;
     /* border: 1px solid red; */
+}
+
+.timer-region h3{
+    font-size: 100px;
 }
 
 .button{
@@ -100,8 +108,8 @@ body{
   .gallery-slide h3{
     position: absolute;
     font-size: 24px;
-    bottom: 20px;
-    left: 20px;
+    bottom: 5px;
+    left: 10px;
     margin: 0;
   }
 
