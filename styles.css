@@ -29,14 +29,18 @@ body{
     /* border: 1px solid white; */
 }
 
+.wrapper{
+    display: flex;
+}
 .slide{
     height: 80vh;
-    color: white;
+    color: #f1e7d9;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     /* border: 1px solid red; */
     display: flex;
+    flex: 1;
     justify-content: center;
     align-items: flex-start;
   }
