@@ -47,7 +47,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     /* flex: 1; */
     /* border: 1px solid white; */
 }
@@ -58,12 +58,18 @@ body{
     align-items: center;
     /* border: 1px solid red; */
 }
+
 .button{
     border: none;
     cursor: pointer;
+    padding: 8px 20px;
+    border-radius: 15px;
+    color: #f1e7d9;
+    background-color: #338f83;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 15px;
 }
-
-
 
 .gallery{
     width: 100%;
