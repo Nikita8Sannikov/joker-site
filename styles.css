@@ -72,6 +72,23 @@ body{
 .timer-region h3{
     font-size: 100px;
     text-align: center;
+    margin: 0px 30px;
+}
+
+@media (max-width: 900px){
+  .timer-region h3{
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 430px){
+  .timer-region h3{
+    font-size: 65px;
+  }
+ .timer-buttons{
+  display: flex;
+ }
+  
 }
 
 .button{
@@ -113,6 +130,23 @@ body{
     bottom: 5px;
     left: 10px;
     margin: 0;
+  }
+
+  @media (max-width: 900px){
+    .gallery-slide h3{
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 430px){
+    .gallery-slide h3{
+      font-size: 18px;
+      opacity: 0;
+    }
+    .gallery-slide.active h3{
+      opacity: 1;
+       transition: opacity .3s ease-in .4s;
+    }
   }
 
   .gallery-slide.active{
