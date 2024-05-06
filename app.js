@@ -7,6 +7,35 @@ const timeBtn = document.getElementById('time')
 // const premier = new Date(2024, 9, 4, 19, 30 )
 // const rest = (premier - new Date())/1000/60/60/24
 
+function createFormatter() {
+    return function(rest){
+       return function (formatType){
+            let days = Math.floor(rest)
+            let hours = Math.floor((rest - days) * 24)
+            let minutes = Math.floor(((rest - days) * 24 - hours) * 60)
+            let seconds = Math.floor((((rest - days) * 24 - hours) * 60 - minutes) * 60)
+            let fullHours = days*24 + hours
+
+            switch(formatType){
+                case 'days':
+                    return days + ` дней `
+                case 'hours':
+                    return hours + ` часов `
+                case 'minutes':
+                    return minutes + ` минут `
+                case 'seconds':
+                    return seconds + ` секунд`
+                case 'fullHours':
+                    return fullHours +  ` часов `  
+                
+            }
+        }
+    }
+}
+
+let formatTime = createFormatter()
+
+
 function bindMode(name){
     return function() {
         mode = name
@@ -36,14 +65,11 @@ function format(formatMode){
     const rest = (premier - new Date())/1000/60/60/24
     switch(formatMode){
         case 'full': 
-            return Math.floor(rest)+ ` дней `+
-            Math.floor((rest - Math.floor(rest))*24)+ ` часов `+
-            Math.floor(((rest - Math.floor(rest))*24 - Math.floor((rest - Math.floor(rest))*24))*60)+` минут ` +  Math.floor(((((rest - Math.floor(rest))*24 - Math.floor((rest - Math.floor(rest))*24))*60) - Math.floor(((rest - Math.floor(rest))*24 - Math.floor((rest - Math.floor(rest))*24))*60))*60) + 
-            ` секунд `
+            return formatTime(rest)('days') + formatTime(rest)('hours') + formatTime(rest)('minutes') + formatTime(rest)('seconds') 
         case 'date':
-            return  Math.floor(rest)+ ` дней `
+            return formatTime(rest)('days')
         case 'time':
-            return  (Math.floor(rest)*24) + Math.floor((rest - Math.floor(rest))*24)+ ` часов ` + Math.floor(((rest - Math.floor(rest))*24 - Math.floor((rest - Math.floor(rest))*24))*60) +  ` минут ` +  Math.floor(((((rest - Math.floor(rest))*24 - Math.floor((rest - Math.floor(rest))*24))*60) - Math.floor(((rest - Math.floor(rest))*24 - Math.floor((rest - Math.floor(rest))*24))*60))*60) + ` секунд `
+            return formatTime(rest)('fullHours') + formatTime(rest)('minutes') + formatTime(rest)('seconds') 
     }
 }
 
