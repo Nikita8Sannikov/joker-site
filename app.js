@@ -1,6 +1,6 @@
 let mode = 'full'
 // const now = new Date()
-const output = document.getElementById('output')
+const output = document.querySelector('.timer__output')
 const fullBtn = document.getElementById('full')
 const dateBtn = document.getElementById('date')
 const timeBtn = document.getElementById('time')
