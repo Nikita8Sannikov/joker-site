@@ -58,7 +58,7 @@ body{
     align-items: center;
     justify-content: flex-start;
     /* flex: 1; */
-    /* border: 1px solid white; */
+    border: 1px solid red;
 }
 
 .timer h2{
@@ -77,8 +77,9 @@ body{
     margin: 0px 30px;
 } */
 .timer__output{
-  margin: 20px 0 0 0;
-    font-size: 2.3em;
+  margin: auto 0 0 0;
+  font-size: 2.3em;
+  text-align: center;
 }
 
 
