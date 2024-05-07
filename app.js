@@ -79,9 +79,9 @@ slidesPlugin = (activeSlide = 0) => {
   slides[activeSlide].classList.add("--active")
 
   slides.forEach((slide) => {
-    slide.addEventListener("click", () => {
+    slide.addEventListener("mouseover", () => {
       clearActiveClasses()
-
+      
       slide.classList.add("--active")
     })
   })
