@@ -190,7 +190,6 @@ body{
     position: relative;
     overflow: hidden;
     height: 80vh;
-    border: 1px solid red;
     margin: 0px 30px;
     border-radius: 20px;
   }

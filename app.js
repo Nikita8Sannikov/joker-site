@@ -4,6 +4,15 @@ const output = document.querySelector(".timer__output")
 const fullBtn = document.getElementById("full")
 const dateBtn = document.getElementById("date")
 const timeBtn = document.getElementById("time")
+
+const upBtn = document.querySelector('.controls__down-button');
+const downBtn = document.querySelector('.controls__up-button');
+
+const sidebar = document.querySelector('.slider__sidebar');
+const mainSlide= document.querySelector('.slider__main-slide');
+const slidesCount = mainSlide.querySelectorAll('div').length;
+const slider = document.querySelector('.slider')
+
 const premier = new Date(2024, 9, 4, 19, 30)
 const rest = (premier - new Date()) / 1000 / 60 / 60 / 24
 
@@ -94,3 +103,37 @@ slidesPlugin = (activeSlide = 0) => {
 }
 
 slidesPlugin(2)
+
+let activeSlideIndex = 0;
+
+sidebar.style.top = `-${(slidesCount-1)*80}vh`;
+
+upBtn.addEventListener('click', () =>{
+    changeSlide ('up');
+});
+
+downBtn.addEventListener('click', () =>{
+    changeSlide('down');
+});
+
+function changeSlide (direction) {
+    if(direction === 'up') {
+        activeSlideIndex++;
+        if(activeSlideIndex === slidesCount){
+            activeSlideIndex = 0;
+        }
+    }
+
+    if(direction === 'down'){
+        activeSlideIndex--;
+        if(activeSlideIndex < 0){
+            activeSlideIndex = slidesCount-1;
+        }
+    }
+
+    const height = slider.clientHeight;
+
+    mainSlide.style.transform = `translateY(-${activeSlideIndex*height}px)`;
+    sidebar.style.transform = `translateY(${activeSlideIndex*height}px)`;
+}
+
