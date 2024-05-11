@@ -29,10 +29,47 @@ body{
     align-items: center;
 }
 
+.site-logo{
+  margin-left: 30px;
+}
 
 .site-logo img{
   vertical-align: bottom;
+  border-radius: 20px;
+  width: 20vh;
 }
+
+@media (max-width: 2200px){
+  .site-logo img{
+    width: 18vh;
+  }
+}
+@media (max-width: 1400px){
+  .site-logo img{
+    width: 15vh;
+  }
+}
+@media (max-width: 1000px){
+  .site-logo img{
+    width: 12vh;
+  }
+}
+@media (max-width: 750px){
+  .site-logo img{
+    width: 9vh;
+  }
+}
+@media (max-width: 500px){
+  .site-logo img{
+    width: 6vh;
+  }
+}
+@media (max-width: 345px){
+  .site-logo img{
+    width: 4vh;
+  }
+}
+
 
 .site-name{ 
     color: white;
