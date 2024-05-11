@@ -5,13 +5,13 @@ const fullBtn = document.getElementById("full")
 const dateBtn = document.getElementById("date")
 const timeBtn = document.getElementById("time")
 
-const upBtn = document.querySelector('.controls__down-button');
-const downBtn = document.querySelector('.controls__up-button');
-
+const upBtn = document.querySelector('.controls__up-button');
+const downBtn = document.querySelector('.controls__down-button');
+const slider = document.querySelector('.slider')
 const sidebar = document.querySelector('.slider__sidebar');
 const mainSlide= document.querySelector('.slider__main-slide');
 const slidesCount = mainSlide.querySelectorAll('div').length;
-const slider = document.querySelector('.slider')
+const dropZone = document.querySelector('.drop-zone')
 
 const premier = new Date(2024, 9, 4, 19, 30)
 const rest = (premier - new Date()) / 1000 / 60 / 60 / 24
@@ -118,6 +118,7 @@ downBtn.addEventListener('click', () =>{
 
 function changeSlide (direction) {
     if(direction === 'up') {
+      console.log(slidesCount);
         activeSlideIndex++;
         if(activeSlideIndex === slidesCount){
             activeSlideIndex = 0;
@@ -137,3 +138,39 @@ function changeSlide (direction) {
     sidebar.style.transform = `translateY(${activeSlideIndex*height}px)`;
 }
 
+
+dropZone.addEventListener("dragover", (event) => {
+  event.preventDefault()
+  dropZone.classList.add("drag-over")
+})
+
+dropZone.addEventListener("dragleave", () => {
+  dropZone.classList.remove("drag-over")
+})
+
+dropZone.addEventListener('drop', (event) => {
+  event.preventDefault()
+  dropZone.classList.remove("drag-over")
+
+  const files = Array.from(event.dataTransfer.files)
+
+  files.forEach(file => {
+    if (file.type.startsWith('image/')) {
+    const reader = new FileReader();
+      reader.onload = () => {
+        const imageUrl = reader.result
+        createSlide(imageUrl)
+      }
+    
+      reader.readAsDataURL(file)
+    }
+  })
+})
+
+
+function createSlide(imageUrl) {
+  const slide = document.createElement('div');
+  slide.classList.add('main-slide__slide')
+  slide.style.backgroundImage = `url('${imageUrl}')`
+  mainSlide.appendChild(slide)
+}
