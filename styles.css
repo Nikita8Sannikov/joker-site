@@ -31,10 +31,6 @@ body{
     margin: 0 30px;
 }
 
-.site-logo{
-  /* margin-left: 30px; */
-}
-
 .site-logo img{
   vertical-align: bottom;
   border-radius: 20px;
@@ -329,3 +325,13 @@ body{
     border-bottom-right-radius: 5px;
   }
   
+  .drop-zone{
+    border: 2px dashed #aaa;
+    color: white;
+    padding: 20px;
+    margin: 10px 30px;
+  }
+
+  .drop-zone.drag-over {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
