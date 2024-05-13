@@ -9,6 +9,7 @@ const upBtn = document.querySelector('.controls__up-button');
 const downBtn = document.querySelector('.controls__down-button');
 const slider = document.querySelector('.slider')
 const sidebar = document.querySelector('.slider__sidebar');
+// const sidebarSlide = document.querySelector('sidebar__slide')
 const mainSlide= document.querySelector('.slider__main-slide');
 const slidesCount = mainSlide.querySelectorAll('div').length;
 const dropZone = document.querySelector('.drop-zone')
@@ -53,8 +54,10 @@ function bindMode(name) {
 fullBtn.addEventListener("click", bindMode("full"))
 dateBtn.addEventListener("click", bindMode("date"))
 timeBtn.addEventListener("click", bindMode("time"))
+
 function update() {
   output.textContent = format(mode)
+  console.log('tick');
 }
 
 setInterval(update, 1000)
@@ -118,7 +121,6 @@ downBtn.addEventListener('click', () =>{
 
 function changeSlide (direction) {
     if(direction === 'up') {
-      console.log(slidesCount);
         activeSlideIndex++;
         if(activeSlideIndex === slidesCount){
             activeSlideIndex = 0;
@@ -136,6 +138,12 @@ function changeSlide (direction) {
 
     mainSlide.style.transform = `translateY(-${activeSlideIndex*height}px)`;
     sidebar.style.transform = `translateY(${activeSlideIndex*height}px)`;
+}
+
+function updateSlideInfo() {
+  const slidesCount = mainSlide.querySelectorAll('div').length;
+  const sideSlidesCount = sidebar.querySelectorAll('div').length;
+  sidebar.style.top = `-${(slidesCount-1)*80}vh`;
 }
 
 
@@ -159,7 +167,10 @@ dropZone.addEventListener('drop', (event) => {
     const reader = new FileReader();
       reader.onload = () => {
         const imageUrl = reader.result
+      
         createSlide(imageUrl)
+        createSideSlide() 
+        updateSlideInfo() 
       }
     
       reader.readAsDataURL(file)
@@ -172,5 +183,18 @@ function createSlide(imageUrl) {
   const slide = document.createElement('div');
   slide.classList.add('main-slide__slide')
   slide.style.backgroundImage = `url('${imageUrl}')`
-  mainSlide.appendChild(slide)
+  // mainSlide.appendChild(slide)
+  mainSlide.insertBefore(slide, mainSlide.firstChild)
+}
+
+function createSideSlide() {
+  const sideSlide = document.createElement('div');
+  sideSlide.classList.add('sidebar__slide')
+  sideSlide.style.background = `linear-gradient(229.99deg, #eee -26%, #eee2 145%)`
+  sidebar.appendChild(sideSlide)
+  // sidebar.insertBefore(sideSlide, sidebar.firstChild)
+
+  const pSideSlide = document.createElement('p');
+  pSideSlide.textContent = 'Цитата Джокера'
+  sideSlide.appendChild(pSideSlide)
 }
