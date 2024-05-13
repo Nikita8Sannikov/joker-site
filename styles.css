@@ -76,9 +76,9 @@ body{
     transform: translateX(-50%)
 }
 
-.wrapper{
+/* .wrapper{
     display: flex;
-}
+} */
 .slide{
     height: 80vh;
     color: #f1e7d9;
@@ -139,6 +139,21 @@ body{
   padding: 0 15px;
 }
 
+@media(max-width: 365px){
+  .timer h2 {
+    font-size: 26px;
+}
+.timer-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.timer-buttons__button {
+  margin: 5px 15px;
+}
+
+}
+
 
 @media (max-width: 900px){
   .timer-region h3{
@@ -172,6 +187,22 @@ body{
     font-weight: bold;
     margin: 0 15px;
 }
+
+@media(max-width: 365px){
+  .timer h2 {
+    font-size: 26px;
+}
+.timer-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.timer-buttons__button {
+  margin: 5px 15px;
+}
+
+}
+
 
 .timer-buttons__button:hover{
   background-color: #80c1b8;
