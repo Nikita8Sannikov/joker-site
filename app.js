@@ -10,8 +10,9 @@ const downBtn = document.querySelector('.controls__down-button');
 const slider = document.querySelector('.slider')
 const sidebar = document.querySelector('.slider__sidebar');
 // const sidebarSlide = document.querySelector('sidebar__slide')
+let sideSlidesCount = sidebar.querySelectorAll('div').length;
 const mainSlide= document.querySelector('.slider__main-slide');
-const slidesCount = mainSlide.querySelectorAll('div').length;
+let slidesCount = mainSlide.querySelectorAll('div').length;
 const dropZone = document.querySelector('.drop-zone')
 
 const premier = new Date(2024, 9, 4, 19, 30)
@@ -57,7 +58,7 @@ timeBtn.addEventListener("click", bindMode("time"))
 
 function update() {
   output.textContent = format(mode)
-  console.log('tick');
+  // console.log('tick');
 }
 
 setInterval(update, 1000)
@@ -120,6 +121,7 @@ downBtn.addEventListener('click', () =>{
 });
 
 function changeSlide (direction) {
+  updateSlideInfo()
     if(direction === 'up') {
         activeSlideIndex++;
         if(activeSlideIndex === slidesCount){
@@ -141,8 +143,8 @@ function changeSlide (direction) {
 }
 
 function updateSlideInfo() {
-  const slidesCount = mainSlide.querySelectorAll('div').length;
-  const sideSlidesCount = sidebar.querySelectorAll('div').length;
+  slidesCount = mainSlide.querySelectorAll('div').length;
+  sideSlidesCount = sidebar.querySelectorAll('div').length;
   sidebar.style.top = `-${(slidesCount-1)*80}vh`;
 }
 
@@ -169,7 +171,7 @@ dropZone.addEventListener('drop', (event) => {
         const imageUrl = reader.result
       
         createSlide(imageUrl)
-        createSideSlide() 
+        createSideSlide(imageUrl) 
         updateSlideInfo() 
       }
     
@@ -187,10 +189,17 @@ function createSlide(imageUrl) {
   mainSlide.insertBefore(slide, mainSlide.firstChild)
 }
 
-function createSideSlide() {
+function createSideSlide(imageUrl) {
   const sideSlide = document.createElement('div');
   sideSlide.classList.add('sidebar__slide')
-  sideSlide.style.background = `linear-gradient(229.99deg, #eee -26%, #eee2 145%)`
+  RGBaster.colors(imageUrl, {
+    // Не учитывать белый цвет
+    exclude: ['rgb(255,255,255)'],
+    success: function(payload) {
+      sideSlide.style.background = `linear-gradient(229.99deg, ${payload.dominant} -26%, ${payload.secondary} 145%)`
+    }
+  })
+  // sideSlide.style.background = `linear-gradient(229.99deg, #eee -26%, #eee2 145%)`
   sidebar.appendChild(sideSlide)
   // sidebar.insertBefore(sideSlide, sidebar.firstChild)
 
