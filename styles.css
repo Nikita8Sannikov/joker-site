@@ -411,18 +411,15 @@ body{
     opacity: 0;
     display: none;
  }
-
- .drop-zone button{
-  border-radius: 5px;
- }
  
  label {
+  cursor: pointer;
   background-color: #fff;
   border: none;
   color: #aaa;
-  cursor: pointer;
   font-size: 16px;
   padding: 15px;
+  border-radius: 5px;
 }
 
 label:hover {
