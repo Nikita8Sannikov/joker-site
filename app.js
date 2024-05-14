@@ -242,10 +242,11 @@ fileInput.addEventListener('change', handleFileSelect);
 function handleFileSelect(event) {
   const files = event.target.files;
   handleFiles(files);
+  // console.log(event.target.files);
 }
 
 function handleFiles(files) {
-  files.forEach(file => {
+  for (const file of files){
     if (file.type.startsWith('image/')) {
     const reader = new FileReader();
       reader.onload = () => {
@@ -258,5 +259,5 @@ function handleFiles(files) {
     
       reader.readAsDataURL(file)
     }
-  })
+  }
 }
