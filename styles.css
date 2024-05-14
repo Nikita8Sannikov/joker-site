@@ -416,3 +416,19 @@ body{
   border-radius: 5px;
  }
  
+ label {
+  background-color: #fff;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+}
+
+label:hover {
+  color: #222;
+}
+
+label:focus {
+  outline: none;
+}
