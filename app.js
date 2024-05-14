@@ -14,6 +14,7 @@ let sideSlidesCount = sidebar.querySelectorAll('div').length;
 const mainSlide= document.querySelector('.slider__main-slide');
 let slidesCount = mainSlide.querySelectorAll('div').length;
 const dropZone = document.querySelector('.drop-zone')
+const fileInput = document.getElementById('file-input');
 
 const premier = new Date(2024, 9, 4, 19, 30)
 const rest = (premier - new Date()) / 1000 / 60 / 60 / 24
@@ -234,4 +235,28 @@ function createSideSlide(imageUrl) {
   const pSideSlide = document.createElement('p');
   pSideSlide.textContent = phrases[randomInteger(0, phrases.length)]
   sideSlide.appendChild(pSideSlide)
+}
+
+fileInput.addEventListener('change', handleFileSelect);
+
+function handleFileSelect(event) {
+  const files = event.target.files;
+  handleFiles(files);
+}
+
+function handleFiles(files) {
+  files.forEach(file => {
+    if (file.type.startsWith('image/')) {
+    const reader = new FileReader();
+      reader.onload = () => {
+        const imageUrl = reader.result
+      
+        createSlide(imageUrl)
+        createSideSlide(imageUrl) 
+        updateSlideInfo() 
+      }
+    
+      reader.readAsDataURL(file)
+    }
+  })
 }
