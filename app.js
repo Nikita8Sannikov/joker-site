@@ -1,3 +1,4 @@
+import {slidesPlugin} from './slider/slider.js'
 let mode = "full"
 // const now = new Date()
 const output = document.querySelector(".timer__output")
@@ -114,26 +115,8 @@ function format(formatMode) {
   }
 }
 
-slidesPlugin = (activeSlide = 0) => {
-  const slides = document.querySelectorAll(".gallery__slide")
 
-  slides[activeSlide].classList.add("--active")
-
-  slides.forEach((slide) => {
-    slide.addEventListener("mouseover", () => {
-      clearActiveClasses()
-
-      slide.classList.add("--active")
-    })
-  })
-
-  function clearActiveClasses() {
-    slides.forEach((slide) => {
-      slide.classList.remove("--active")
-    })
-  }
-}
-
+//Вызываем Слайдер
 slidesPlugin(2)
 
 let activeSlideIndex = 0
