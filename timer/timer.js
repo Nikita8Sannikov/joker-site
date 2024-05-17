@@ -1,4 +1,7 @@
 let mode = "full"
+const fullBtn = document.getElementById("full")
+const dateBtn = document.getElementById("date")
+const timeBtn = document.getElementById("time")
 export const update = () => {
     const output = document.querySelector(".timer__output")
     
@@ -54,7 +57,12 @@ export const update = () => {
   }
   
   output.textContent = format(mode)
+  
+  fullBtn.addEventListener("click", bindMode("full"))
+  dateBtn.addEventListener("click", bindMode("date"))
+  timeBtn.addEventListener("click", bindMode("time"))
   }
+
 
   export function bindMode(name) {
     return function () {
