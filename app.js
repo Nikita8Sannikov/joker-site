@@ -1,5 +1,6 @@
 import {galleryPlugin} from './gallery/gallery.js'
 import {update, bindMode} from './timer/timer.js'
+import {sliderPlugin} from './slider/slider.js'
 
 
 
@@ -7,14 +8,14 @@ const fullBtn = document.getElementById("full")
 const dateBtn = document.getElementById("date")
 const timeBtn = document.getElementById("time")
 
-const upBtn = document.querySelector(".controls__up-button")
-const downBtn = document.querySelector(".controls__down-button")
-const slider = document.querySelector(".slider")
-const sidebar = document.querySelector(".slider__sidebar")
+// const upBtn = document.querySelector(".controls__up-button")
+// const downBtn = document.querySelector(".controls__down-button")
+// const slider = document.querySelector(".slider")
+// const sidebar = document.querySelector(".slider__sidebar")
 // const sidebarSlide = document.querySelector('sidebar__slide')
-let sideSlidesCount = sidebar.querySelectorAll("div").length
-const mainSlide = document.querySelector(".slider__main-slide")
-let slidesCount = mainSlide.querySelectorAll("div").length
+// let sideSlidesCount = sidebar.querySelectorAll("div").length
+// const mainSlide = document.querySelector(".slider__main-slide")
+// let slidesCount = mainSlide.querySelectorAll("div").length
 const dropZone = document.querySelector(".drop-zone")
 const fileInput = document.getElementById("file-input")
 
@@ -57,48 +58,14 @@ update()
 
 
 
-//Вызываем Слайдер
+//Вызываем Галерею
 galleryPlugin(2)
 
-let activeSlideIndex = 0
 
-sidebar.style.top = `-${(slidesCount - 1) * 80}vh`
+//Вызываем Слайдер
+sliderPlugin(0)
 
-upBtn.addEventListener("click", () => {
-  changeSlide("up")
-})
 
-downBtn.addEventListener("click", () => {
-  changeSlide("down")
-})
-
-function changeSlide(direction) {
-  updateSlideInfo()
-  if (direction === "up") {
-    activeSlideIndex++
-    if (activeSlideIndex === slidesCount) {
-      activeSlideIndex = 0
-    }
-  }
-
-  if (direction === "down") {
-    activeSlideIndex--
-    if (activeSlideIndex < 0) {
-      activeSlideIndex = slidesCount - 1
-    }
-  }
-
-  const height = slider.clientHeight
-
-  mainSlide.style.transform = `translateY(-${activeSlideIndex * height}px)`
-  sidebar.style.transform = `translateY(${activeSlideIndex * height}px)`
-}
-
-function updateSlideInfo() {
-  slidesCount = mainSlide.querySelectorAll("div").length
-  sideSlidesCount = sidebar.querySelectorAll("div").length
-  sidebar.style.top = `-${(slidesCount - 1) * 80}vh`
-}
 
 dropZone.addEventListener("dragover", (event) => {
   event.preventDefault()
