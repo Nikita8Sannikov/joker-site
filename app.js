@@ -1,4 +1,4 @@
-import {slidesPlugin} from './slider/slider.js'
+import {galleryPlugin} from './gallery/gallery.js'
 import {update, bindMode} from './timer/timer.js'
 
 
@@ -58,7 +58,7 @@ update()
 
 
 //Вызываем Слайдер
-slidesPlugin(2)
+galleryPlugin(2)
 
 let activeSlideIndex = 0
 
