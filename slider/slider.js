@@ -1,10 +1,15 @@
-const mainSlide = document.querySelector(".slider__main-slide")
-const sidebar = document.querySelector(".slider__sidebar")
+export const mainSlide = document.querySelector(".slider__main-slide")
+export const sidebar = document.querySelector(".slider__sidebar")
 let slidesCount = mainSlide.querySelectorAll("div").length
 const upBtn = document.querySelector(".controls__up-button")
 const downBtn = document.querySelector(".controls__down-button")
 let sideSlidesCount = sidebar.querySelectorAll("div").length
 const slider = document.querySelector(".slider")
+export  function updateSlideInfo() {
+    slidesCount = mainSlide.querySelectorAll("div").length
+    sideSlidesCount = sidebar.querySelectorAll("div").length
+    sidebar.style.top = `-${(slidesCount - 1) * 80}vh`
+  }
 
 export const sliderPlugin = (activeSlideIndex = 0) => {
  
